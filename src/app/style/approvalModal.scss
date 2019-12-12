@@ -1,0 +1,299 @@
+@import "styles/color.scss";
+
+@mixin button-mini {
+    margin: 0px;
+    border-radius: 0;
+    box-shadow: none;
+    min-width: 60px;
+    border: 1px solid $col-grey;
+    background: #FFF;
+    flex: inherit;
+    height: 26px;
+    display: inline-block;
+    .btn__content {
+        padding: 0 7px;
+        line-height: 24px;
+    }
+}
+
+@mixin button-normal {
+    margin: 0px;
+    border-radius: 0;
+    box-shadow: none;
+    min-width: 60px;
+    border: 1px solid $col-grey;
+    background: #FFF;
+    flex: inherit;
+    height: 30px;
+    display: inline-block;
+    margin-top: -1px;
+    .btn__content {
+        padding: 0 20px;
+        line-height: 28px;
+    }
+}
+
+/* 결재 작성 style */
+#app .approval-dialog {
+}
+
+/* 결재 작성 style */
+#app .approval-writing {
+    /* test options */
+
+    /* [APRV] variables */
+
+    $action-height: 50px; /* Action(하단 버튼) 높이 */
+    $modal-width: 100%; /* Contents 영역 너비 */
+    $row-height: 30px;
+
+    /* [APRV] Toolbar */
+    /* .aprv__toolbar {position:absolute;top:0;left:0;right:0;height:$toolbar-height;background:#FFF;z-index:10;
+        box-shadow:2px 0px 8px $col-shadow;}
+    .aprv__toolbar__title {margin-left:calc(50% - #{$modal-width / 2});font-size:26px;line-height:$toolbar-height;}
+    .aprv__toolbar__action {position:absolute;right:calc(50% - #{$modal-width / 2});top:0;bottom:0;
+        line-height:$toolbar-height;} */
+
+
+    /* [APRV] content */
+    /* .aprv__content {position:absolute; top:$toolbar-height;bottom:$action-height + 20px;
+        left : calc(50% - #{$modal-width / 2}); right: calc(50% - #{$modal-width / 2});
+        background:#FFF;overflow-y:auto;overflow-x:hidden;z-index:9;padding-top:10px;} */
+    .aprv__content__row {
+    }
+
+    .aprv__content__row + .aprv__content__row {
+        margin-top: 10px;
+    }
+
+
+    /* [APRV] content :: 결재자 결재선 */
+
+    .aprv__signer {
+        margin-top: 00px;
+    }
+
+    .aprv__signer__add-row {
+        height: $row-height;
+        position: relative;
+        margin-bottom: 5px;
+    }
+
+    .aprv__signer__add-row__el-wrapper {
+        height: $row-height;
+        line-height: $row-height;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    .aprv__signer__add-row__el-wrapper + .aprv__signer__add-row__el-wrapper {
+        margin-left: 5px;
+    }
+
+    .aprv__signer__add-row .input-group--text-field {
+        width: 320px;
+        padding-top: 0px;
+        height: $row-height;
+    }
+
+    .aprv__signer__add-row .input-group--text-field {
+    }
+
+    .aprv__signer__add-row .input-group__input {
+        border: 1px solid $col-lgrey;
+        height: $row-height;
+    }
+
+    .aprv__signer__add-row .input-group__input input {
+        padding-left: 5px;
+    }
+
+    .aprv__signer__add-row .input-group__details {
+        min-height: 0px;
+        margin-top: -1px;
+    }
+
+    .aprv__signer__add-row .input-group__details::before {
+        background: $col-lgrey;
+    }
+
+    .aprv__signer__add-row .input-group--focused .input-group__input {
+        border-color: $col-prim-l1;
+    }
+
+    .aprv__signer__add-row .btn {
+        @include button-normal;
+    }
+
+    .aprv__signer__add-row .btn .btn__content {
+        padding: 0 8px;
+    }
+
+    .aprv__signer__ctrl-row {
+        position: relative;
+        vertical-align: middle;
+        border: 1px solid $col-lgrey;
+        padding: 5px;
+        background: $col-grey-l3;
+        margin-top: 10px;
+    }
+
+    .aprv__signer__ctrl-row .btn {
+        @include button-mini;
+    }
+
+    .aprv__signer__ctrl-row .btn + .btn {
+        margin-left: 2px;
+    }
+
+    .aprv__signer__ctrl-row .btn.aprv__btn-icon {
+        min-width: 30px;
+    }
+
+    .aprv__signer__ctrl-row .btn.aprv__btn-icon .btn__content {
+        padding: 0;
+    }
+
+    .aprv__signer__ctrl-row .aprv__singer__text {
+        height: 26px;
+        line-height: 26px;
+        display: inline-block;
+    }
+
+    .aprv__signer__divider {
+        display: inline-block;
+        width: 11px;
+        position: relative;
+        height: 26px;
+        line-height: 26px;
+        vertical-align: middle;
+    }
+
+    .aprv__signer__divider::before {
+        content: ' ';
+        display: inline-block;
+        margin-left: 5px;
+        width: 1px;
+        height: 26px;
+        background: $col-grey-l1;
+    }
+
+    .aprv__signer__list {
+        border: 1px solid $col-lgrey;
+        margin-top: -1px;
+    }
+
+    .aprv__signer__list ul {
+        min-height: 90px;
+        width: 100%;
+    }
+
+    .aprv__signer__list .aprv__signer__item {
+        list-style: none;
+        margin: 0;
+        padding: 5px 0;
+        user-select: none;
+    }
+
+    .aprv__signer__list .aprv__signer__item:hover {
+        background: #f9fbfd;
+    }
+
+    .aprv__signer__list .aprv__signer__item--selected {
+        background: #f1f6fd;
+    }
+
+    .aprv__signer__list .aprv__signer__item--selected:hover {
+        background: #f1f6fd;
+    }
+
+    .aprv__signer__list .aprv__signer__item__seq {
+        display: inline-block;
+        width: 30px;
+        text-align: center;
+    }
+
+    .aprv__signer__list .aprv__signer__item__type {
+        margin-right: 10px;
+    }
+
+    .aprv__signer__list .aprv__signer__item__type .btn {
+        @include button-mini;
+        height: 26px;
+    }
+
+    .aprv__signer__list .aprv__signer__item__type .btn-toggle {
+        box-shadow: none;
+    }
+
+    .aprv__signer__list .aprv__signer__item__type .btn-toggle .btn {
+        padding: 0;
+        min-width: 40px;
+    }
+
+    .aprv__signer__list .aprv__signer__item__type .btn-toggle .btn.btn--active {
+        background: $col-prim;
+        color: $col-white;
+        border: 1px solid $col-prim;
+    }
+
+    .aprv__signer__list .aprv__signer__item__type .btn-toggle .btn__content {
+        padding: 0 8px;
+        min-width: 30px;
+    }
+
+    .aprv__signer__list .aprv__signer__item__type .btn-toggle .btn + .btn {
+        margin-left: -1px;
+    }
+
+    .aprv__signer__list .aprv__signer__item__type-long {
+        width: 136px;
+    }
+
+    .aprv__signer__list .aprv__signer__item__remove {
+        @include button-mini;
+        height: 26px;
+        min-width: 30px;
+        float: right;
+        margin-right: 10px;
+        background: $col-trans;
+    }
+
+    .aprv__signer__list .aprv__signer__item__remove .btn__content {
+        padding: 0;
+        border: none;
+        background: $col-trans;
+    }
+
+    .aprv_editor {
+        margin-top: 10px;
+    }
+
+    .aprv__content__html {
+        //border: 1px solid $col-grey-l1;
+        min-height: 200px;
+        padding: 10px;
+    }
+
+    .aprv__content__html ol {
+        padding-left: 12px;
+    }
+
+    .aprv__action {
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - #{$modal-width / 2});
+        right: calc(50% - #{$modal-width / 2});
+        height: $action-height;
+        text-align: right;
+    }
+
+    .aprv__action .btn {
+        @include button-normal;
+    }
+
+    .aprv__action .btn + .btn {
+        margin-left: 5px;
+    }
+}
+

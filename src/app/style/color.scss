@@ -1,0 +1,77 @@
+/* [COL] color */
+$col-primary: #2A96FD;
+$col-prim: $col-primary;
+$col-prim-l1: #6169B8;
+$col-prim-l2: #898ECA;
+$col-prim-l3: #B0B4DB;
+$col-prim-l4: #D8D9ED;
+$col-prim-l5: #ECEDF6;
+
+$col-prim-d1: #2E3685;
+$col-prim-d2: #232864;
+$col-prim-d3: #171B42;
+
+$col-red: #f76c5e;
+$col-orange: #ffab48;
+$col-yellow: #f4e43c;
+$col-green: #a6d172;
+$col-blue: #4e8cce;
+$col-navy: #6b6bc8;
+$col-violet: #9d67db;
+
+$col-notfound-green: #5EC198;
+
+$col-black: #000;
+$col-dark: #333;
+$col-grey-d3: #4E4E4E;
+$col-grey-d2: #666;
+$col-grey-d1: #888;
+$col-grey: #999;
+$col-grey-l1: #ccc;
+$col-grey-l2: #ebebeb;
+$col-grey-l3: #f3f2f3;
+$col-dgrey: $col-grey-d2;
+$col-lgrey: $col-grey-l2;
+$col-white: #FFF;
+$col-border: rgba(0, 0, 0, 0.05);
+
+
+$col-shadow-dark: rgba(0, 0, 0, 0.2);
+$col-shadow-light: rgba(255, 255, 255, 0.4);
+$col-shadow: $col-shadow-dark;
+$col-transparent: rgba(0, 0, 0, 0);
+$col-trans: $col-transparent;
+
+
+$cp: $col-primary;
+
+
+#app-root {
+    .col-red {
+        color: $col-red;
+    }
+
+    .col-orange {
+        color: $col-orange;
+    }
+
+    .col-yellow {
+        color: $col-yellow;
+    }
+
+    .col-green {
+        color: $col-green;
+    }
+
+    .col-blue {
+        color: $col-blue;
+    }
+
+    .col-navy {
+        color: $col-navy;
+    }
+
+    .col-violet {
+        color: $col-violet;
+    }
+}

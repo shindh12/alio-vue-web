@@ -1,0 +1,36 @@
+/* UTIL Class*/
+@import "./color.scss";
+
+.unselectable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+td.clickable {
+    text-decoration: underline
+}
+
+.clickable:hover {
+    color: $col-primary;
+}
+
+/* font-weight:bold; */
+
+
+.fixed-layout table.datatable {
+    table-layout: fixed;
+}

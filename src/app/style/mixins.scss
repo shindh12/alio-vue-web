@@ -1,0 +1,406 @@
+@import "styles/color.scss";
+
+
+/* [UTIL] height + line-height :: for text */
+@mixin text-height($lhi) {
+    height: $lhi;
+    line-height: $lhi;
+}
+
+/* [VUETIFY] input-group--text-field에 앞에 label이 오게끔 */
+@mixin labeled-textfield($label-size) {
+    /* [LABELED] label */
+    > label {
+        display: inline-block;
+        position: relative;
+        width: $label-size;
+        top: 0;
+        font-size: 13px;
+        transform: inherit;
+        font-weight: bold;
+    }
+    &.input-group--error > label {
+        animation: none;
+    }
+    /* [LABELED] input */
+    > div.input-group__input {
+        width: calc(100% - #{$label-size});
+        display: inline-block;
+        flex: initial;
+    }
+    &.input-group--select > div.input-group__input {
+        width: calc(100% - #{$label-size});
+        display: inline-block;
+        flex: initial;
+    }
+    > div.input-group__input .input-group__append-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+    /* [LABELED] details */
+    > div.input-group__details {
+        min-height: 0px;
+        margin-left: $label-size;
+        width: calc(100% - #{$label-size});
+        flex: initial;
+        overflow: visible
+    }
+
+    /* [LABELED] etc */
+    &.input-group--select > .input-group__input {
+        height: 30px;
+    }
+    .input-group__counter {
+        margin-left: calc(100% - 100px);
+        width: 100px;
+        text-align: right;
+        margin-top: -10px;
+    }
+
+    /* [LABELED] !!! for checkbox */
+    &.input-group--selection-controls label {
+        left: 0;
+        padding: 0;
+        font-size: 13px;
+        color: #000
+    }
+}
+
+/* [VUETIFY] input-group--text-field에 앞에 label이 오게끔 */
+@mixin override-vuetify {
+    $el-height: 30px;
+
+    /* [UTIL] vuetify textField */
+    &.input-group--text-field {
+        padding-top: 0px;
+
+        &:not(.input-group--multi-line) {
+            height: $el-height;
+            line-height: $el-height;
+
+            .input-group__input {
+                height: $el-height;
+            }
+        }
+
+        label {
+            color: $col-black;
+        }
+
+        &.input-group--required label:after {
+            color: red;
+            margin-left: 3px;
+            vertical-align: sub;
+        }
+
+        .input-group__input {
+            flex: initial;
+            display: inline-block;
+            position: relative;
+            -ms-flex-preferred-size: inherit;
+            border: 1px solid #cecece;
+            background: #fff;
+        }
+
+        .input-group__input input {
+            padding: 0px 7px;
+            font-size: 13px;
+        }
+
+        .input-group__input input:disabled,
+        .input-group__input select:disabled {
+            background: #efefef;
+            height: 100%
+        }
+
+        .input-group__input textarea {
+            padding: 3px 7px;
+            font-size: 13px;
+        }
+
+        .input-group__input .input-group__selections__comma {
+            padding: 0px 7px;
+            font-size: 13px;
+        }
+
+        .input-group__input textarea {
+            width: 100%;
+            height: 100%;
+        }
+
+        &.input-group--prepend-icon label {
+            left: 0;
+        }
+
+        .input-group__prepend-icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .input-group__prepend-icon + input {
+            margin-left: 30px;
+            width: calc(100% - 30px);
+        }
+
+        .input-group__details {
+            min-height: 0px;
+            height: 0px;
+            overflow: visible;
+            margin-top: -1px;
+            -ms-flex-negative: 1;
+        }
+
+        .input-group__details::before {
+            background-color: #f7f7f7;
+            background-image: none;
+        }
+
+        .input-group__details::after {
+            background-color: $col-primary;
+        }
+
+        &.input-group--focused .input-group__input {
+            border: 1px solid $col-primary;
+        }
+
+        .input-group__error,
+        .input-group__hint {
+            padding: 5px 5px;
+            margin: 4px 0px 10px 0px;
+            background: $col-white !important;
+            z-index: 10;
+            box-shadow: 2px 2px 8px $col-shadow, -0px -0px 4px $col-shadow;
+            position: absolute;
+            width: 100%;
+            line-height: 1.5;
+            top: 4px;
+        }
+
+        .input-group__append-icon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+    &.input-group--select {
+        padding-top: 0px;
+        height: $el-height;
+        color: $col-black;
+
+        .input-group__input {
+            width: 100%;
+        }
+
+        .input-group__details {
+            display: none;
+        }
+
+        .input-group__selections__comma {
+            font-size: 13px;
+            text-align: right;
+            display: inline-block;
+            padding: 0 3px;
+        }
+
+        /* disabled */
+        &.input-group--disabled .input-group__input {
+            background: #EFEFEF;
+        }
+
+
+        /* focused */
+        &.input-group--focused .input-group__input {
+        }
+    }
+
+
+    &.input-group--selection-controls {
+        display: inline-block;
+        vertical-align: middle;
+        height: $el-height;
+        line-height: $el-height;
+
+        label {
+            font-size: 12px;
+            left: 24px;
+        }
+
+        .input-group--selection-controls__container {
+            height: $el-height;
+        }
+
+        .input-group__input {
+            height: $el-height;
+        }
+
+        .input-group__input i.icon {
+            font-size: 20px;
+        }
+
+        .input-group__input {
+            flex: initial;
+            display: inline-block;
+        }
+
+        .input-group__details {
+            min-height: 0px;
+            height: 0px;
+            overflow: visible;
+            margin-top: -1px;
+        }
+
+        /* &.icon--selection-control {color:$col-dark;} */
+        /* &.accent--text .icon--selection-control{color:$col-prim;} */
+        &.input-group--active .icon--selection-control {
+            color: $col-prim;
+        }
+    }
+
+    /* [UTIL] vuetify datatable */
+    &.datatable {
+        border-top: 1px solid $col-grey;
+        border-bottom: 1px solid $col-grey;
+
+        thead tr {
+            height: 34px;
+        }
+
+        thead th {
+            padding: 0;
+            background: #f7f7f7;
+            color: #000;
+            font-weight: bold;
+        }
+
+        tbody tr,
+        tbody td {
+            height: 33px;
+            padding: 0 7px;
+            word-wrap: break-word;
+        }
+
+        tbody td .btn {
+            margin: 0;
+        }
+
+        .accent--text {
+            color: #4183E1 !important;
+        }
+
+        i.icon {
+            font-size: 18px;
+        }
+    }
+    /* [UTIL] vuetify button */
+    &.btn {
+        color: $col-primary;
+        min-width: 0;
+        margin: 0;
+        border-radius: 0px;
+        border: 1px solid $col-grey-l1;
+        color: $col-dark;
+        background: $col-white;
+        height: 27px;
+        box-shadow: none;
+        display: inline-block;
+
+        &.btn--disabled {
+            border: 1px solid $col-grey-l2;
+            background: $col-trans !important;
+        }
+
+        &.btn--disabled .btn__content {
+            border: none;
+            background: $col-trans;
+        }
+
+        .btn__content {
+            font-size: 12px;
+            font-weight: normal;
+            height: 25px;
+            line-height: 25px;
+        }
+
+        &[primary] {
+            background: $col-prim;
+            color: $col-white;
+            border: none;
+        }
+
+        &[primary] .btn__content {
+            height: 27px;
+            line-height: 27px;
+        }
+
+        &[primary]:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &.btn-toggle {
+        box-shadow: none;
+
+        .btn {
+            box-shadow: none;
+        }
+    }
+
+    &.tabs {
+        .tabs__wrapper {
+            .tabs__container {
+                border-bottom: 1px solid $col-grey;
+                height: 35px;
+            }
+
+            .tabs__div {
+            }
+
+            .tabs__div + .tabs__div {
+                margin-left: -1px;
+            }
+
+            .tabs__item {
+                background: $col-grey-l2;
+                opacity: 1;
+                border: 1px solid $col-grey;
+                padding: 0px 30px;
+                position: relative;
+                flex-basis: auto;
+            }
+
+            .tabs__item--active {
+                background: $col-white;
+                border-bottom: 1px solid $col-white;
+            }
+
+            .tabs__item--active:after {
+                content: ' ';
+                position: absolute;
+                top: -1px;
+                height: 5px;
+                left: -1px;
+                right: -1px;
+                background: $col-prim;
+            }
+
+            .tabs__slider-wrapper {
+                z-index: 1;
+                top: 0;
+                bottom: inherit;
+            }
+
+            .tabs__slider {
+                height: 5px;
+            }
+        }
+
+        .tabs__items {
+        }
+    }
+}

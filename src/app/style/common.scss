@@ -1,0 +1,1447 @@
+@import './color.scss';
+@import './util.scss';
+@import './mixins.scss';
+
+/* [COM] system default */
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: "돋움", Dotum, Arial, Helvetica, sans-serif; /* CX 표준 폰트 */
+    font-size: 12px;
+    line-height: 18px;
+}
+
+/*font-family: "Roboto", "Noto Sans KR";*/
+
+/* [LAYOUT] Page frame (Default) */
+$gnb-height: 70px; /* @see also index.vue */
+$default-left-size: 200px; /* @see also leftBox.vue */
+#app-root {
+    color: #000;
+    width: 100%;
+    height: 100vh;
+
+    /* [LAYOUT] 상단 메뉴 바 */
+    .gnb-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: $gnb-height;
+        z-index: 20;
+    }
+
+    /* [LAYOUT] 왼쪽 메뉴 바 */
+    .lnb-wrapper {
+        position: absolute;
+        top: $gnb-height;
+        left: 0;
+        bottom: 0;
+        width: $default-left-size;
+        z-index: 10;
+    }
+
+    /* [LAYOUT] 컨텐츠 영역 */
+    .contents-wrapper {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        top: $gnb-height;
+        left: $default-left-size;
+        overflow: auto;
+        background: #FFF;
+        transition-delay: 0s;
+
+        > div {
+            min-width: 1000px;
+        }
+
+        .isdp-page { /* @see [PAGE] styles below */
+        }
+    }
+}
+
+
+/* [PAGE] normal one...*/
+#app .isdp-page {
+    padding: 0px 30px;
+    height: 100%;
+
+
+    > div {
+        height: 100%;
+    }
+}
+
+#app {
+    /* [HEAD] Page header */
+    .page-header {
+        position: relative;
+    }
+
+    /* [HEAD] Page title */
+    .page-header__title {
+        width: 100%;
+        font-size: 14px;
+        font-weight: bold;
+        height: 55px;
+        line-height: 55px;
+        color: #000;
+        letter-spacing: -0.05em;
+    }
+
+    .page-header__title small {
+        font-size: 14px;
+        margin-left: 8px;
+        opacity: 0.5;
+    }
+
+    /* [HEAD] Breadcrumb */
+    .page-header__breadcrumb {
+        display: none;
+    }
+
+    /* .page-header__breadcrumb {position:absolute;top:0;right:0;}
+    .page-header__breadcrumb__path {opacity:0.5;cursor:pointer;}
+    .page-header__breadcrumb__path:hover {opacity:1;color:$col-primary;}
+    .page-header__breadcrumb__path::after {content:">";margin:0 8px;}
+    .page-header__breadcrumb__menu {font-size:14px;} */
+
+
+    /* [SEARCH] variable */
+    $schbox-row-height: 50px;
+    $label-size: 120px;
+    /* [SEARCH] 기본 틀 잡기 */
+    .page-searchbox {
+        min-height: $schbox-row-height;
+        font-size: 0;
+        border: 1px solid $col-grey-l1;
+    }
+
+    /* [SEARCH] 기본 틀 잡기 :: cell 기준 */
+    .page-searchbox__row {
+    }
+
+    .page-searchbox__row + .page-searchbox__row {
+        border-top: 1px solid $col-grey-l2;
+    }
+
+    .page-searchbox__item-cell {
+        padding: 0 20px;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        line-height: $schbox-row-height;
+        height: $schbox-row-height;
+        font-size: 0px;
+        border-right: 1px solid $col-grey-l2;
+    }
+
+    .page-searchbox__item-cell:last-child {
+        border-right: none;
+    }
+
+    .page-searchbox__item-title {
+        font-size: 13px;
+        width: $label-size;
+        display: inline-block;
+        position: relative;
+        color: $col-black;
+        font-weight: bold;
+        height: $schbox-row-height;
+        line-height: $schbox-row-height;
+        vertical-align: middle;
+    }
+
+    .page-searchbox__btn-cell {
+        width: 120px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        text-align: right;
+    }
+
+    .page-searchbox__btn-cell button.btn.btn {
+        position: absolute;
+        right: 10px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        color: $col-primary;
+        border: 1px solid $col-primary;
+    }
+
+    /* [SEARCH] 기본 틀 잡기 :: row 기준 */
+    .page-searchbox__item-row {
+        width: calc(100% - 120px);
+        height: $schbox-row-height;
+        line-height: $schbox-row-height;
+        color: $col-grey;
+    }
+
+    .page-searchbox__item__select-wrapper {
+        min-width: 80px;
+        display: inline-block;
+        position: relative;
+        height: $schbox-row-height;
+        line-height: $schbox-row-height;
+        vertical-align: middle;
+    }
+
+    /* [SEARCH] action row - button */
+    .page-searchbox-action {
+        margin-top: 10px;
+        text-align: right;
+    }
+
+    .page-searchbox-action .btn {
+        @include override-vuetify;
+    }
+
+    /* [SEARCH] 1-Column */
+    .page-searchbox--col1 {
+    }
+
+    .page-searchbox--col1 .page-searchbox__item-cell {
+        width: calc(100%)
+    }
+
+    .page-searchbox--col1.page-searchbox--has-btn .page-searchbox__item-cell {
+        width: calc(100% - 120px);
+    }
+
+    /* [SEARCH] 2-Column */
+    .page-searchbox--col2 {
+    }
+
+    .page-searchbox--col2 .page-searchbox__item-cell {
+        width: calc(50%)
+    }
+
+    .page-searchbox--col2 .page-searchbox__item-cell.page-searchbox__item-cell--colspan2 {
+        width: calc(100%)
+    }
+
+    .page-searchbox--col2.page-searchbox--has-btn .page-searchbox__item-cell {
+        width: calc(50% - 60px);
+    }
+
+    /* [SEARCH] 3-Column */
+    .page-searchbox--col3 {
+    }
+
+    .page-searchbox--col3 .page-searchbox__item-cell {
+        width: calc(33.3%)
+    }
+
+    .page-searchbox--col3 .page-searchbox__item-cell.page-searchbox__item-cell--colspan2 {
+        width: calc(66.6%)
+    }
+
+    .page-searchbox--col3.page-searchbox--has-btn .page-searchbox__item-cell {
+        width: calc(33% - 40px);
+    }
+
+    /* [SEARCH] 4-Column */
+    .page-searchbox--col4 {
+    }
+
+    .page-searchbox--col4 .page-searchbox__item-cell {
+        width: calc(25%)
+    }
+
+    .page-searchbox--col4 .page-searchbox__item-cell.page-searchbox__item-cell--colspan2 {
+        width: calc(50%)
+    }
+
+    .page-searchbox--col4.page-searchbox--has-btn .page-searchbox__item-cell {
+        width: calc(25% - 30px);
+    }
+
+    /* [SEARCH] 4-Column */
+    .page-searchbox .page-searchbox__item-cell--full-width {
+        width: 100%;
+    }
+
+    /* [SEARCH] with menu */
+    .page-searchbox__item-cell--datepicker-comboset .menu {
+        position: static;
+    }
+
+    .page-searchbox__item-cell--datepicker-comboset .menu .menu__activator {
+        position: static;
+    }
+
+    .page-searchbox__item-cell--datepicker-comboset__wrapper {
+        display: inline-block;
+    }
+
+    .page-searchbox__item-cell--datepicker-comboset__wrapper::before {
+        content: '~';
+        margin-left: 126px;
+        position: absolute;
+        font-size: 14px;
+        padding-lefT: 3px;
+    }
+
+    .page-searchbox__item-cell--datepicker-comboset .input-group--text-field.search-datepicker {
+        left: 140px;
+        width: 120px;
+    }
+
+    .page-searchbox__item-cell--datepicker-comboset .menu + .menu .input-group--text-field.search-datepicker {
+        left: 270px;
+        margin-left: 19px;
+    }
+
+    .page-searchbox__item-cell--datepicker-comboset .input-group--text-field.search-datepicker .input-group__input {
+        width: calc(100% - 1px);
+    }
+
+    /* .page-searchbox__item-cell--datepicker-comboset .menu + .menu .input-group--text-field.search-datepicker::before
+            {content:"~";margin-right:10px;position:absolute;right:100%;} */
+    .page-searchbox__item-cell--datepicker-comboset .menu + .menu + .btn-toggle {
+        margin-left: 280px
+    }
+
+    .page-searchbox__item-cell--datepicker-comboset .menu + .menu + .btn-toggle .btn + .btn {
+        margin-left: -1px;
+    }
+
+    .page-searchbox__item-cell--datepicker-comboset .btn-toggle {
+        vertical-align: middle;
+        height: 28px;
+    }
+
+    .page-searchbox__item-cell--datepicker-comboset .btn-toggle .btn {
+        color: $col-black;
+        border: 1px solid #dbdbdb;
+        height: 30px;
+        opacity: 1;
+    }
+
+    .page-searchbox__item-cell--datepicker-comboset .btn-toggle .btn.btn--active {
+        background: $col-prim;
+        color: $col-white;
+        border: 1px solid $col-prim;
+    }
+
+    .btn--active .btn__content,
+    .btn--active .btn__content::before,
+    .btn:hover .btn__content::before,
+    .btn:focus .btn__content::before {
+        background-color: transparent;
+    }
+
+
+    /* [SEARCH] Vuetify */
+    /* [SEARCH] Vuetify - input group */
+    .input-group .input-group__details {
+        display: none;
+    }
+
+    .page-searchbox .input-group--text-field {
+        @include override-vuetify;
+        @include labeled-textfield($label-size);
+        width: calc(100% - 40px);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    .page-searchbox .input-group--text-field.input-group--text-field {
+        height: 26px;
+    }
+
+    .page-searchbox.page-searchbox .input-group--text-field .input-group__input {
+    }
+
+    .page-searchbox.page-searchbox .input-group--text-field .input-group__details:before {
+    }
+
+    .page-searchbox .input-group--text-field.input-group--text-field .input-group__prepend-icon + input {
+        pointer-events: none;
+    }
+
+    .page-searchbox .input-group--text-field label {
+        font-size: 13px;
+        color: $col-dark;
+        font-weight: bold;
+    }
+
+    .page-searchbox .input-group--text-field.item-half {
+        width: 50%;
+    }
+
+    /* maybe larger than just half */
+    .page-searchbox .input-group--text-field.item-half-n-quater {
+        width: 75%;
+    }
+
+    /* also little bit larger. */
+    .page-searchbox .btn-toggle {
+        @include override-vuetify;
+    }
+
+    .page-searchbox .input-group--select.search-select {
+        width: 220px;
+    }
+
+    .page-searchbox .input-group--selection-controls {
+        @include override-vuetify;
+    }
+
+    .page-searchbox .btn {
+        @include override-vuetify;
+    }
+
+    /* [COMP] GLOBAL Convert vuetify v-switch to flat style override */
+    .input-group--selection-controls__container {
+        .input-group--selection-controls__toggle {
+            color: #ccc; // switch off background-color
+            height: 20px;width: 36px;border-radius: 10px;
+        }
+        .input-group--selection-controls__toggle--active {
+            color: $col-primary; // switch on background-color
+            opacity: 1;
+        }
+        .input-group--selection-controls__ripple {
+            left:1px;
+            &::after {width:16px;height:16px;background-color: white; box-shadow: none;} // switch handle
+            span {display: none;} // remove ripple animation when clicking or touching component
+        }
+        .input-group--selection-controls__ripple--active {
+            left: 0px;
+        }
+    }
+
+    /* [COMP] GLOBAL "placeholder" */
+    input::-webkit-input-placeholder {
+        color: #BBB;
+    }
+
+    /* Chrome/Opera/Safari */
+    input::-moz-placeholder {
+        color: #BBB;
+    }
+
+    /* Firefox 19+ */
+    input:-ms-input-placeholder {
+        color: #BBB;
+    }
+
+    /* IE 10+ */
+    input:-moz-placeholder {
+        color: #BBB;
+    }
+
+    /* Firefox 18- */
+
+
+    /* [SEARCH] form 모양이 되어라 */
+    .page-searchbox.page-searchbox--looks-like-form {
+        border: none;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+    }
+
+    .page-searchbox.page-searchbox--looks-like-form .page-searchbox__row {
+        border: none;
+        height: 35px
+    }
+
+    .page-searchbox.page-searchbox--looks-like-form .page-searchbox__row:first-child {
+        margin-top: 9px;
+        height: 44px;
+    }
+
+    .page-searchbox.page-searchbox--looks-like-form .page-searchbox__row:last-child {
+        margin-bottom: 5px;
+    }
+
+    .page-searchbox.page-searchbox--looks-like-form .page-searchbox__item-cell {
+        border: none;
+        height: inherit;
+    }
+
+
+    /* [SEARCH] Datepicker */
+    /* .page-searchbox__datepicker .menu {display:inline-block; padding-top:0px;height:$schbox-row-height;line-height:$schbox-row-height; width: 100%;}
+    .page-searchbox__datepicker .menu .input-group--text-field {width:250px;}
+    .page-searchbox__datepicker{display:inline-block; padding: 0 20px;height:$schbox-row-height;line-height:$schbox-row-height; width:calc(33%);}
+    .page-searchbox__datepicker-button{display:inline-block; padding-left: 20px; padding-right: 20px; padding-top:0px;height:$schbox-row-height;line-height:$schbox-row-height; width:calc(33%);position: absolute;} */
+    /* Added by junoh start. */
+    /* .page-searchbox__item-colspan2 { line-height: $schbox-row-height; color: $col-grey; padding-left: 20px; padding-right: 20px;
+        display:inline-block;position:relative;vertical-align:middle; line-height:$schbox-row-height;height:$schbox-row-height;font-size:1rem;}
+    .page-searchbox--col3 .page-searchbox__item-colspan2{width:calc(66% - 80px);} */
+    /* Added by junoh end. */
+
+
+    /* [CONTENT] content common */
+    .page-content {
+        font-size: 0px;
+        margin-top: 30px;
+    }
+
+    .page-content > * {
+        font-size: 1rem;
+    }
+
+    .page-content {
+        position: relative;
+    }
+
+    /* [TABLE] 변수 */
+    $table-info-height: 28px;
+    $table-action-height: 28px;
+    $table-subrow-padding: 0px;
+    /* [TABLE] 테이블 구조 */
+    .table-area {
+        width: 100%;
+    }
+
+    .table-area--left-fit {
+    }
+
+    /* [TABLE] 상단 Info 영역 (강제 우선순위 레벨업) */
+    .table__info {
+        height: $table-info-height;
+        position: relative;
+        margin-bottom: 5px;
+    }
+
+    .table__info__counter {
+        padding-left: $table-subrow-padding;
+        height: $table-info-height;
+        line-height: $table-info-height;
+    }
+
+    .table__info__counter > div {
+        height: $table-info-height;
+    }
+
+    .table__info__counter__total,
+    .table__info__counter__divider,
+    .table__info__counter__size {
+        height: $table-info-height;
+        line-height: $table-info-height;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .table__info__counter__total {
+        font-size: 13px;
+    }
+
+    .table__info__counter__divider {
+        position: relative;
+        margin: 0px 11px 0 11px;
+        border: none;
+    }
+
+    .table__info__counter__divider::before {
+        content: ' ';
+        position: absolute;
+        top: 7px;
+        left: 0;
+        height: 14px;
+        width: 1px;
+        background: $col-grey-l1;
+    }
+
+    /* [TABLE] 상단 Info 영역 + vuetify select*/
+    .table__info__counter__size {
+        font-size: 16px;
+    }
+
+    .table__info__counter__size .input-group--select {
+        padding-top: 0px;
+        display: inline-block;
+        width: 100px;
+        height: $table-info-height;
+        position: relative;
+        color: #333;
+    }
+
+    .table__info__counter__size .input-group--select::before {
+        opacity: 0.5;
+        color: $col-black;
+        content: " per page";
+        position: absolute;
+        left: 24px;
+        line-height: $table-info-height;
+        font-size: 12px;
+    }
+
+    .table__info__counter__size .input-group--select .input-group__input {
+        width: 100%;
+        border: none;
+        min-height: $table-info-height;
+    }
+
+    .table__info__counter__size .input-group--select .input-group__selections {
+        display: inline-block;
+        height: $table-info-height;
+    }
+
+    .table__info__counter__size .input-group--select .input-group__details {
+        display: none;
+    }
+
+    .table__info__counter__size .input-group--select .input-group__selections__comma {
+        line-height: $table-info-height;
+        font-size: 14px;
+        width: 22px;
+        text-align: right;
+        display: inline-block;
+        padding: 0 3px;
+    }
+
+    .table__info__counter__size .input-group--select i.icon {
+        height: $table-info-height;
+    }
+
+    /* [TABLE] 우상단 Label 영역 */
+    .table__info__label {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    /* [TABLE] 상단2nd action 영역 */
+    $table-action-btn-color: $col-black;
+
+    .table__action {
+        height: $table-action-height;
+        line-height: calc(#{$table-action-height} - 1px);
+        vertical-align: middle;
+        position: absolute;
+        display: inline-block;
+        right: 0px;
+        top: 0px;
+    }
+
+    .table__action__default {
+        padding-left: $table-subrow-padding;
+    }
+
+    .table-area--left-fit .table__action__default {
+        padding-left: 0;
+    }
+
+    .table__action .btn {
+        @extend .mini-vuetify-btn;
+        min-width: 70px;
+        border: 1px solid $table-action-btn-color;
+    }
+
+    /* .table__action .btn:hover {background-color:$col-white !important;} */
+    .table__action .btn[primary]:hover {
+        opacity: 0.8;
+    }
+
+    .table__action .btn.btn {
+        height: 24px;
+    }
+
+    .table__action .btn.btn .btn__content {
+        height: 22px;
+        line-height: 22px;
+    }
+
+    .table__action .btn + .btn {
+        margin-left: 5px;
+    }
+
+    .table__action__optional {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    /* [TABLE] 본체 */
+    .table__body .datatable {
+        @include override-vuetify;
+    }
+
+    .table__body .datatable .input-group--selection-controls {
+        @include override-vuetify;
+        width: initial;
+    }
+
+    .table__body .datatable .input-group--text-field {
+        @include override-vuetify;
+        @include labeled-textfield(0px)
+    }
+
+    .table__body .datatable.datatable--select-all {
+    }
+
+    .table__body .datatable.datatable--select-all th:first-child {
+        width: 32px;
+        padding: 0;
+        text-align: center;
+    }
+
+    .table__body .datatable.datatable--select-all td:first-child {
+        width: 32px;
+        padding: 0;
+        text-align: center;
+    }
+
+    .table__body .datatable td > .icon {
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .table__body .datatable td > .icon:first-child {
+        margin-right: 3px;
+    }
+
+    .table__body .datatable td.clickable > .icon {
+        text-decoration: none;
+    }
+
+    .table__body .table__overflow {
+        overflow: visible;
+    }
+
+    /* side effact 주의!!!! */
+
+    /* [TABLE] Page navi */
+    .table__pager {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .table__pager .pagination {
+    }
+
+    .table__pager .pagination .pagination__navigation {
+        box-shadow: none;
+    }
+
+    .table__pager .pagination .pagination__navigation--disabled {
+        opacity: 0.3;
+    }
+
+    .table__pager .pagination .pagination__item {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        color: $col-grey-d1;
+    }
+
+    .table__pager .pagination .pagination__item--active {
+        color: $col-primary !important;
+        background-color: #FFF !important;
+        font-weight: bold;
+    }
+
+
+    /* [CONTENT] half */
+    $h-margin: 10px;
+
+    .cont-half {
+        width: 50%;
+        min-height: 100px;
+        display: block;
+        position: relative;
+        overflow: auto;
+        padding-bottom: 10px;
+    }
+
+    .cont-half:first-child {
+        padding-right: $h-margin
+    }
+
+    .cont-half:last-child::before {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0px;
+        z-index: 1;
+        background: #f1f6fc;
+        width: 5px;
+        border-left: 1px solid #e0e7f7;
+    }
+
+    .cont-half:last-child {
+        background: #fbfcfe;
+        padding-left: #{$h-margin + 10};
+    }
+
+    .cont-half + .cont-half {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .sub-title {
+        font-size: 14px;
+        line-height: 40px;
+    }
+
+    .cont-half:last-child th {
+        background: #f1f6fc;
+    }
+
+    .cont-half:last-child .form-table th {
+        background: transparent !important;
+    }
+
+    .cont-half:last-child .form-table th.required::after {
+        content: '*';
+        color: red;
+        margin-left: 3px;
+    }
+
+    .cont-half .half-input-box {
+    }
+
+    .cont-half .half-input-box .input-group--text-field {
+        @include override-vuetify;
+        @include labeled-textfield(120px);
+    }
+
+    .cont-half .half-input-row {
+        margin-top: 5px;
+    }
+
+    .cont-half .half-input-box__label {
+        width: 120px;
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        float: left;
+        font-size: 13px;
+    }
+
+    /* [CONTENT] full-height half */
+    /*.page-content.full-height {height:calc(100% - 200px);} 화면별로 상단 마진 재지정 */
+    .page-content.full-height {
+        border-top: 1px solid #ccc; /*border-bottom:1px solid #ccc;*/
+    }
+
+    .page-content.full-height .cont-half {
+        height: 100%;
+    }
+
+    /* [FORM] 테이블 */
+    .form-table {
+        width: 100%;
+    }
+
+    .form-table tr {
+        height: 35px;
+    }
+
+    .form-table th,
+    .form-table td {
+        text-align: left;
+    }
+
+    .form-table th {
+        width: 120px;
+        background: #FFF !important;
+    }
+
+    .form-table td .btn {
+        @extend .mini-vuetify-btn;
+    }
+
+    .form-table td .input-group--text-field {
+        @include override-vuetify;
+        @include labeled-textfield(0px);
+    }
+
+    .form-table td .input-group--selection-controls {
+        @include override-vuetify;
+    }
+
+    /* [ETC] mini action row */
+    .action-row--mini {
+        position: relative;
+        margin: 10px 0;
+        height: 30px;
+    }
+
+    .action-row--mini.margin-top-10px {
+        margin: 10px 0px 0px;
+    }
+
+    .action-row--mini > .right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .action-row--mini .btn {
+        @extend .mini-vuetify-btn;
+    }
+
+    .action-row--mini button.btn {
+        min-width: 56px;
+    }
+
+    .action-row--mini button.btn > .btn__content {
+        padding: 0px 10px;
+    }
+
+    .action-row--mini--right {
+        @extend .action-row--mini;
+        text-align: right;
+    }
+
+    .action-row--mini--left {
+        @extend .action-row--mini;
+        text-align: left;
+    }
+
+    .action-row--mini .label {
+        display: inline-block;
+        position: relative;
+        width: 120px;
+        top: 0;
+        font-size: 13px;
+        transform: inherit;
+        font-weight: bold;
+    }
+
+    .action-row--mini .content {
+        display: inline-block;
+    }
+
+
+}
+
+
+/* [PAGE] detail page */
+#app {
+    /* [DETAIL] Detail contents */
+    $header-width: 120px;
+    $row-height: 32px;
+    $info-table-button-height: 24px !important;
+
+    .detail-page__contents {
+        border-top: 1px solid $col-grey;
+        border-bottom: 1px solid $col-grey;
+    }
+
+    .detail-page__contents__table {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    .detail-page__contents__table tr {
+        height: $row-height;
+    }
+
+    .detail-page__contents__table tr:first-child {
+        height: 41px;
+    }
+
+    .detail-page__contents__table tr:first-child th,
+    .detail-page__contents__table tr:first-child td {
+        padding-top: 9px;
+    }
+
+    .detail-page__contents__table th {
+        width: $header-width;
+        text-align: left;
+        font-size: 13px;
+    }
+
+    .detail-page__contents__table td {
+        width: calc(50% - #{$header-width});
+        padding-right: 20px;
+    }
+
+    .detail-page__contents__table td[colspan='2'] {
+        width: 50%;
+    }
+
+    .detail-page__contents__table .input-group--text-field {
+        @include override-vuetify;
+        @include labeled-textfield(0px);
+    }
+
+    .detail-page__contents__table .btn {
+        @include override-vuetify;
+        height: $info-table-button-height;
+        line-height: $info-table-button-height;
+        margin-left: 5px !important;
+    }
+
+    .detail-page__contents__table .btn.btn .btn__content {
+        padding: 0 10px;
+        font-size: 12px !important;
+        height: 22px;
+        line-height: 22px;
+    }
+
+    /* [DETAIL] Detail button */
+    .detail-page__contents + .action-row--mini--right {
+        margin-top: 10px;
+    }
+
+    /* [DETAIL] divider */
+    hr.detail-devider {
+        margin: 30px 0px;
+        border-color: $col-grey-l2;
+    }
+}
+
+
+/* [MODAL] modal */
+#app .dialog__content .dialog .card {
+    padding: 10px 20px;
+    color: $col-black;
+
+    .card__title {
+        border-bottom: 1px solid $col-grey-l1;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 0px;
+        position: relative;
+    }
+
+    .card__title .headline {
+        font-size: 18px !important;
+        @extend .ellipsis;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .card__title .modal-close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        cursor: pointer;
+    }
+
+    .card__title .modal-close:hover .icon {
+        color: $col-prim;
+    }
+
+    .card__text {
+        margin: 15px 0;
+        padding: 0;
+    }
+
+    /*  */
+    .field-box .input-group--text-field {
+        @include override-vuetify;
+        @include labeled-textfield(120px);
+    }
+
+    .field-box .input-group--text-field.short-label {
+        @include override-vuetify;
+        @include labeled-textfield(60px);
+    }
+
+    .field-box .input-group--selection-controls {
+        @include override-vuetify;
+        @include labeled-textfield(120px);
+    }
+
+    .field-box .datatable .input-group--selection-controls {
+        @include labeled-textfield(0px);
+    }
+
+    .field-box hr {
+        margin: 10px 0;
+        border: none;
+        border-top: 1px solid #AAA;
+    }
+
+    .card__text .input-group + .input-group {
+        margin-top: 10px;
+    }
+
+    .card__text .page-searchbox:last-child {
+        margin-bottom: 0px;
+    }
+
+    .card__actions {
+        text-align: right;
+        display: block;
+        padding-right: 0;
+    }
+
+    .card__actions .btn {
+        @include override-vuetify;
+    }
+
+    .card__actions .btn + .btn {
+        margin-left: 8px;
+    }
+
+    /* COUNTER!!! */
+    .card__text .table__info__counter__size .input-group--select .input-group__input {
+        width: 100%;
+        border: none;
+    }
+
+    .card__text .table__info__counter__size .input-group--select .input-group__selections__comma {
+        padding: 0px 3px;
+    }
+}
+
+#app .dialog__content .dialog.dialog--fullscreen .card {
+    height: 100% !important;
+    min-width: 900px;
+
+    .dialog-body {
+        padding: 20px 30px;
+        height: calc(100% - 150px);
+        overflow: auto;
+    }
+
+    .dialog-body .tabs {
+        @include override-vuetify;
+    }
+
+
+    .card__text {
+        margin: 0;
+    }
+
+    .card__actions {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        padding: 0 30px;
+    }
+}
+
+.tabs {
+    @include override-vuetify;
+}
+
+/* [UTIL] mini btn */
+.mini-vuetify-btn {
+    @include override-vuetify
+}
+
+/* [UTIL] vuetify select box - menu */
+#app .menu__content {
+    transform: translateY(15px);
+}
+
+.override-vuetify {
+    @include override-vuetify;
+}
+
+hr.working {
+    border-color: red;
+    margin: 20px 0;
+}
+
+
+/* [UTIL] DropZZONE!!! */
+#app .dropzone {
+    & {
+        color: #333;
+        border: 0px;
+        border: 1px solid $col-lgrey;
+        padding-top: 60px;
+    }
+
+    &.dz-started .dz-default {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        lefT: 0;
+        right: 0;
+    }
+
+    /* item wrapper */
+    .dz-preview {
+        display: block;
+        min-height: 40px;
+        margin: 0px;
+        border-top: 1px solid #333;
+    }
+
+    .dz-preview:last-child {
+        border-bottom: 1px solid #333;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    /* image -> relative */
+    .dz-image {
+        width: 100%;
+        height: 40px;
+        background: none;
+        display: none;
+    }
+
+    .dz-image > img {
+        width: 100%;
+        transform: translate(0%, -50%);
+        margin-top: 20px;
+        transition: .3s filter;
+    }
+
+    .dz-file-preview .dz-image {
+        opacity: 0;
+    }
+
+    /* hover something */
+    .dz-preview.dz-image-preview:hover {
+        & {
+            min-height: 40px;
+        }
+
+        .dz-image {
+            height: 40px;
+        }
+
+        .dz-image img {
+            filter: blur(4px) brightness(103%) saturate(90%);
+            margin-top: 50px;
+        }
+
+        .dz-details {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 85%, rgba(255, 255, 255, 0.0));
+            color: #000;
+        }
+
+        .dz-remove:before {
+            background: radial-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.4) 40%, rgba(255, 255, 255, 0) 80%);
+            color: #000;
+        }
+    }
+
+    .dz-preview.dz-file-preview:hover {
+        .dz-details {
+            color: #000;
+        }
+    }
+
+
+    .dz-details {
+        padding: 0;
+        background-color: rgba(0, 0, 0, 0);
+        color: #333;
+        line-height: 40px;
+        width: 390px;
+        min-width: 0;
+        font-size: 0px;
+        opacity: 1;
+    }
+
+    .dz-size, .dz-filename {
+        display: inline-block;
+        margin: 0;
+        height: 40px;
+        line-height: 40px;
+        vertical-align: middle;
+    }
+
+    .dz-size {
+        width: 80px;
+        font-size: 14px;
+    }
+
+    .dz-filename {
+        width: 300px;
+        font-size: 12px;
+    }
+
+    .dz-progress {
+        border: 1px solid #333;
+        background: #FFF;
+        height: 12px;
+        margin-top: -6px;
+        left: 400px;
+        right: 60px;
+        width: auto;
+        margin-left: 0px;
+    }
+
+    .dz-upload {
+        background: #4385F3;
+    }
+
+    .dz-remove {
+        opacity: 1;
+        color: #333;
+        height: 20px;
+        top: 50%;
+        margin-top: -20px;
+        right: 10px;
+        border: none;
+        font-size: 0;
+        text-decoration: none;
+    }
+
+    .dz-remove:before {
+        content: "\f00d";
+        font-family: "Font Awesome 5 Free";
+        font-size: 14px;
+        font-weight: 900;
+        width: 30px;
+        height: 30px;
+        display: block;
+        line-height: 30px;
+        margin-top: -5px;
+    }
+}
+
+#app .aprv__dropzone {
+    & {
+        margin-top: 10px;
+        position: relative;
+    }
+
+    .aprv__dropzone__collapse {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    .aprv__dropzone__collapse:hover,
+    .aprv__dropzone__collapse:hover .icon {
+        color: $col-prim-l1;
+    }
+
+    .aprv__dropzone__summary {
+        border: 1px solid $col-lgrey;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .aprv__dropzone__summary--empty {
+        opacity: 0.4;
+    }
+}
+
+
+/* TbValidaotr 적용 */
+.tb-validator-in-dialog .-tb-validator {
+    margin-top: 10px;
+}
+
+.tb-validator-in-dialog .-tb-validator .-tb-validator__error-message.-tb-validator__error-message--bottom {
+    z-index: 10;
+    background: #FFF;
+    padding: 3px 10px;
+    border-radius: 3px;
+    transform: translateY(calc(100% + 3px));
+    font-size: 1em;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-left: 120px;
+    width: calc(100% - 120px);
+}
+
+.tb-validator-in-dialog .-tb-validator__error-message.-tb-validator__error-message--bottom {
+    z-index: 10;
+    background: #FFF;
+    padding: 3px 10px;
+    border-radius: 3px;
+    transform: translateY(calc(100% + 3px));
+    font-size: 1em;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-left: 120px;
+    width: calc(100% - 120px);
+}
+
+.-tb-validator__error-message.-tb-validator__error-message--bottom
+.tb-validator-in-table .-tb-validator {
+}
+
+.tb-validator-in-table .-tb-validator .-tb-validator__error-message.-tb-validator__error-message--bottom {
+    z-index: 10;
+    background: #FFF;
+    padding: 3px 10px;
+    border-radius: 3px;
+    transform: translateY(calc(100% + 3px));
+    font-size: 1em;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), 2px 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+
+.tb-validator-in-dialog.-tb-validator.-tb-validator--error input,
+.tb-validator-in-dialog.-tb-validator.-tb-validator--error textarea {
+    border: 1px solid red;
+    box-shadow: 0px 0px 4px rgba(255, 0, 0, 0.3);
+}
+
+
+.-tb-validator .-tb-validator--error input, .-tb-validator .-tb-validator--error textarea {
+    border: 1px solid red;
+    box-shadow: 0px 0px 4px rgba(255, 0, 0, 0.3);
+}
+
+.body__content .tb-validator-in-dialog .-tb-validator .-tb-validator__error-message.-tb-validator__error-message--bottom {
+    width: 380px;
+}
+
+
+th.required:after {
+    content: " *";
+    color: red;
+}
+
+
+/* Vuetify Override [ISDP-1586] */
+#app .menu__content {
+    &, > .card {
+        box-shadow: none;
+        border-radius: 0px;
+        overflow: inherit;
+        contain: none;
+    }
+
+    > .picker, > .list, > .card > .list {
+        padding: 4px 0;
+        border: 1px solid #ccc;
+    }
+
+    //>.picker {margin-left: -40px;margin-top: -12px;}
+    .list__tile {
+        height: 30px;
+        font-size: 13px;
+    }
+
+}
+
+#app#app .page-searchbox__item-title + span {
+    & {
+        position: relative;
+        display: inline-block;
+        vertical-align: inherit;
+        width: calc(100% - 130px);
+    }
+
+    /* .input-group--select.search-select {width:100px;} */
+    .input-group--text-field.input-group--select > div.input-group__input {
+        width: 100%;
+    }
+
+    .input-group--text-field {
+        width: 100%;
+    }
+
+    .narrow-search-select {
+        width: 140px;
+    }
+}
